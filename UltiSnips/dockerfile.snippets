@@ -1,0 +1,47 @@
+snippet dochelp "Show availale commands" b
+# ADD CMD ENTRYPOINT ENV EXPOSE FROM MAINTAINER RUN USER VOLUME WORKDIR
+endsnippet
+
+snippet docadd "ADD src_ DIR_URL dst_DIR" b
+ADD ${1:${VISUAL:SRC}} ${2:${VISUAL:DST}}
+endsnippet
+
+snippet doccmd "CMD application argA argB ..." b
+CMD "${1:${VISUAL:EXE}}" "${2:${VISUAL:ARG}}"
+endsnippet
+
+snippet docent "ENTRYPOINT application argA argB ..." b
+ENTRYPOINT ${1:${VISUAL:EXE}} ${2:${VISUAL:ARG}}
+endsnippet
+
+snippet docenv "ENV key val" b
+ENV ${1:${VISUAL:KEY}} ${2:${VISUAL:VAL}}
+endsnippet
+
+snippet docexp "EXPOSE port" b
+EXPOSE ${1:${VISUAL:PORT}} 
+endsnippet
+
+snippet docfrom "FROM baseImage" b
+EXPOSE ${1:${VISUAL:IMGNAME}} 
+endsnippet
+
+snippet docmaint "MAINTAINER 'author name'" b
+MAINTAINER ${1:${VISUAL:AUTHORNAME}} 
+endsnippet
+
+snippet docrun "RUN application argA argB ..." b
+RUN "${1:${VISUAL:EXE}}" "${2:${VISUAL:ARG}}"
+endsnippet
+
+snippet docuser "USER UserID" b
+USER ${1:${VISUAL:USERID}} 
+endsnippet
+
+snippet docvol "VOLUME [dirA, dirB]" b
+VOLUME ["${1:${VISUAL:DIRA}}", "${1:${VISUAL:DIRB}}"]
+endsnippet
+
+snippet docwdir "WORKDIR dir" b
+WORKDIR ${1:${VISUAL:DIR}} 
+endsnippet

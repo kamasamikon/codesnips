@@ -1,0 +1,55 @@
+extends json
+
+snippet dosip "#^ sip:172.17.0.2:8000" b
+#^ sip:${1:${VISUAL:localhost:8000}}
+endsnippet
+
+snippet doget "GET ... http://..." b
+GET ' ' http://127.0.0.1:8880/${1:${VISUAL:path}}
+endsnippet
+
+snippet dogets "GET ... https://..." b
+GET ' ' https://127.0.0.1:8880/${1:${VISUAL:path}}
+endsnippet
+
+snippet dopost "POST ... http://..." b
+POST '
+{
+	${1:${VISUAL:xxx}}
+}
+' http://127.0.0.1:8880/${2:${VISUAL:path}}
+endsnippet
+
+snippet doposts "POST ... https://..." b
+POST '
+{
+	${1:${VISUAL:xxx}}
+}
+' https://127.0.0.1:8880/${2:${VISUAL:path}}
+endsnippet
+
+snippet doput "PUT ... http://..." b
+PUT '
+{
+	${1:${VISUAL:xxx}}
+}
+' http://127.0.0.1:8880/${2:${VISUAL:path}}
+endsnippet
+
+
+snippet doputs "PUT ... https://..." b
+PUT '
+{
+	${1:${VISUAL:xxx}}
+}
+' https://127.0.0.1:8880/${2:${VISUAL:path}}
+endsnippet
+
+snippet dodel "DELETE ... http://..." b
+DELETE ' ' http://127.0.0.1:8880/${1:${VISUAL:path}}
+endsnippet
+
+snippet dodels "DELETE ... https://..." b
+DELETE ' ' https://127.0.0.1:8880/${1:${VISUAL:path}}
+endsnippet
+
