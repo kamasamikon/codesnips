@@ -1,0 +1,159 @@
+snippet miwf "Mistral Workflow Direct" b
+---
+version: '2.0'
+
+${1:${VISUAL:TODO}}:
+  # Arbitrary text containing workflow description. 
+  # Optional.
+  description: "${2:${VISUAL:TODO}}"
+
+  # Workflow type. Either 'direct' or 'reverse'. 'direct' by default.
+  # Optional.
+  type: direct
+
+  # List defining required input parameter names and optionally their 
+  # default values in a form "my_param: 123". 
+  # Optional.
+  input:
+    - ${3:${VISUAL:TODO}}
+    - ${4:${VISUAL:TODO}}
+    - KEY: DEFVAL
+
+  # Any data structure arbitrarily containing expressions that defines 
+  # workflow output. May be nested. 
+  # Optional.
+  output:
+    ${5:${VISUAL:TODO}}: <% $.${6:${VISUAL:TODO}} %>
+
+  # Any data structure arbitrarily containing YAQL expressions that 
+  # defines output of a workflow to be returned if it goes into error 
+  # state. May be nested. 
+  # Optional.
+  output-on-error:
+    ${7:${VISUAL:TODO}}: <% $.${8:${VISUAL:TODO}} %>
+
+  tasks:
+    # Put your tasks here
+
+endsnippet
+
+snippet mitask "Mistral Task" b
+${1:${VISUAL:TODO}}:
+  # Arbitrary text containing task description. 
+  # Optional.
+  description: "${2:${VISUAL:TODO}}"
+
+  # Name of the action associated with the task. 
+  # Mutually exclusive with workflow. 
+  # If neither action nor workflow are provided then the action 'std.noop' will be used.
+  action: ${3:${VISUAL:TODO}}
+
+  # Name of the workflow associated with the task. 
+  # Mutually exclusive with action.
+  workflow: ${4:${VISUAL:TODO}}
+
+  # Actual input parameter values of the task. 
+  # Value of each parameter is a JSON-compliant type such as number, 
+  # string etc, dictionary or list. It can also be an expression to 
+  # retrieve value from task context or any of the mentioned types 
+  # containing inline expressions (for example, string "<% $.movie_name %> 
+  # is a cool movie!")
+  # Optional
+  input: 
+    - ${5:${VISUAL:TODO}}
+    - ${6:${VISUAL:TODO}}
+
+  # Dictionary of variables to publish to the workflow context. Any 
+  # JSON-compatible data structure optionally containing expression 
+  # to select precisely what needs to be published. Published variables 
+  # will be accessible for downstream tasks via using expressions. 
+  # Optional.
+  publish: ${7:${VISUAL:TODO}}
+
+  # Same as publish but evaluated in case of task execution failures. 
+  # Optional
+  publish-on-error: ${8:${VISUAL:TODO}}
+
+  # If configured, it allows to run action or workflow associated with a 
+  # task multiple times on a provided list of items. See Processing 
+  # collections using 'with-items' for details. 
+  # Optional.
+  with-items: ${9:${VISUAL:TODO}}
+
+  # Boolean value allowing to not store action results after task 
+  # completion (e.g. if they are large and not needed afterwards). 
+  # By default is 'true'.
+  # Optional.
+  keep-result: ${10:${VISUAL:true}}
+
+  # String parameter. It defines an executor to which task action should 
+  # be sent to. Target here physically means a name of executors group but 
+  # task will be run only on one of them. 
+  # Optional.
+  target: ${11:${VISUAL:TODO}}
+
+  # Configures pause-before policy. 
+  # Optional.
+  pause-before: ${12:${VISUAL:TODO}}
+
+  # Configures wait-before policy. 
+  # Optional.
+  wait-before: ${13:${VISUAL:TODO}}
+
+  # Configures wait-after policy. 
+  # Optional.
+  wait-after: ${14:${VISUAL:TODO}}
+
+  # Configures timeout policy. 
+  # Optional.
+  timeout: ${15:${VISUAL:TODO}}
+
+  # Configures retry policy. 
+  # Optional.
+  retry: 
+    # Defines a maximum number of times that a task can be repeated.
+    count: ${16:${VISUAL:TODO}}
+
+    # Defines a delay in seconds between subsequent task iterations.
+    delay: ${17:${VISUAL:TODO}}
+
+    # Defines an expression that will break iteration loop if it 
+	# evaluates to 'true'. If it fires then the task is considered error.
+    break-on: <% $myval = true %>
+
+    # See break-on
+    continue-on: <% $myval = false %>
+
+  # Configures concurrency policy. 
+  # Optional.
+  concurrency: ${18:${VISUAL:TODO}}
+
+  # Boolean value allowing to rerun task if executor dies during action 
+  # execution. If set to 'true' task may be run twice. 
+  # By default set to 'false'.
+  # Optional.
+  safe-rerun: ${19:${VISUAL:TODO}}
+endsnippet
+
+
+snippet mitask_http "Mistral Workflow Direct" b
+TODO:
+  action: std.http
+  input:
+    url: http://mywebsite.org
+    method: GET
+    params: TODO
+    body: TODO
+    headers: TODO
+    timeout: TODO
+    allow_redirects: bool
+endsnippet
+
+snippet mitask_workflow "Mistral Workflow Direct" b
+TODO:
+  workflow: some_nested_workflow
+  input:
+    param1: TODO
+    param2: TODO
+endsnippet
+
